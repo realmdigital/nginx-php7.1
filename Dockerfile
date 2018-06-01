@@ -57,6 +57,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	    php7.1-zip \
 	    php7.1-cli \
 	    php7.1-sybase \
+	    php7.1-xdebug \
 	    php7.1-odbc
 
 # Cleanup
@@ -97,6 +98,7 @@ RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf &
 	# create workdir directory
 	mkdir -p /var/www
 
+COPY ./config/php/xdebug.ini /etc/php/7.1/mods-available/xdebug.ini
 COPY ./config/nginx/nginx.conf /etc/nginx/sites-available/default.conf
 # Supervisor Config
 COPY ./config/supervisor/supervisord.conf /etc/supervisord.conf
