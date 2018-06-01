@@ -1,0 +1,10 @@
+web:
+    image: realmdigital/nginx-php7.1
+    container_name: realmdigital-nginx-php7.1-test-instance
+    hostname: realmdigital-nginx-php7.1-test-instance
+    restart: always
+    net: host
+    ports:
+      - '80:80'
+      - '443:443'
+
