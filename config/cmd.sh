@@ -5,8 +5,8 @@ set -euo pipefail
 NGINX_ROOT=${NGINX_ROOT:=/var/www}
 
 # Display PHP error's or not
-sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/g" /etc/php/7.1/fpm/php.ini
-sed -i -e "s/display_errors =.*/display_errors = Off/g" /etc/php/7.1/fpm/php.ini
+sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/g" /etc/php/7.2/fpm/php.ini
+sed -i -e "s/display_errors =.*/display_errors = Off/g" /etc/php/7.2/fpm/php.ini
 
 # Tweak nginx to match the workers to cpu's
 procs=$(cat /proc/cpuinfo |grep processor | wc -l)

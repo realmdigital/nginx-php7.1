@@ -1,7 +1,7 @@
 web:
-    image: realmdigital/nginx-php7.1
-    container_name: realmdigital-nginx-php7.1-test-instance
-    hostname: realmdigital-nginx-php7.1-test-instance
+    image: realmdigital/nginx-php7.x:7.2
+    container_name: realmdigital-nginx-php7.2-test-instance
+    hostname: realmdigital-nginx-php7.2-test-instance
     restart: always
     net: host
     ports:
