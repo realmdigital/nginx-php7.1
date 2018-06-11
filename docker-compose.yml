@@ -4,6 +4,8 @@ web:
     hostname: realmdigital-nginx-php7.2-test-instance
     restart: always
     net: host
+    environment:
+      ENABLE_XDEBUG: 1
     ports:
       - '80:80'
       - '443:443'
