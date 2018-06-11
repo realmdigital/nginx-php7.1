@@ -20,6 +20,24 @@ set +e
 chown -Rf www-data.www-data $NGINX_ROOT
 set -e
 
+XdebugEnabledFile='/etc/php/7.1/fpm/conf.d/20-xdebug.ini'
+XdebugModFile='/etc/php/7.1/mods-available/xdebug.ini'
+if [[ "$ENABLE_XDEBUG" == "1" ]] ; then
+  if [ -f $XdebugEnabledFile ]; then
+    echo "Xdebug enabled"
+  else
+    echo "Enabling xdebug"
+    ln -s $XdebugModFile $XdebugEnabledFile
+    echo "Xdebug enabled"
+  fi
+else
+  if [ -f $XdebugEnabledFile ]; then
+    echo "Disabling Xdebug"
+    rm $XdebugEnabledFile
+    echo "Xdebug disabled"
+  fi
+fi
+
 # if commands are entered for crontab - check it
 if [ $# -gt 0 ]; then
   args=("$@")
