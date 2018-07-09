@@ -6,6 +6,7 @@ web:
     net: host
     environment:
       ENABLE_XDEBUG: 1
+      XDEBUG_CONFIG: "remote_host=123.123.34.34"
     ports:
       - '80:80'
       - '443:443'
