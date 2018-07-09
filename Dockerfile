@@ -88,6 +88,7 @@ RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf &
 	sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.1/fpm/pool.d/www.conf && \
 	sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php7.1-fpm.pid" /etc/php/7.1/fpm/php-fpm.conf && \
 	sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php/7.1/fpm/pool.d/www.conf && \
+	sed -i -e "s/;clear_env = no/clear_env = no/g" /etc/php/7.1/fpm/pool.d/www.conf && \
 
 	# mcrypt configuration
 	phpenmod mcrypt && \
