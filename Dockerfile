@@ -57,7 +57,8 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	    php7.2-cli \
 	    php7.2-sybase \
 	    php7.2-xdebug \
-	    php7.2-odbc
+	    php7.2-odbc \
+	    php7.2-imagick
 
 # Cleanup
 RUN apt-get remove --purge -y software-properties-common \
