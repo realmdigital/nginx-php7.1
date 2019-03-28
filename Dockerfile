@@ -117,3 +117,4 @@ RUN rm -f /etc/nginx/sites-enabled/default && \
 EXPOSE 80
 
 ENTRYPOINT ["/bin/bash", "/cmd.sh"]
+
