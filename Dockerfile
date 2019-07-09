@@ -1,6 +1,6 @@
 FROM ubuntu:16.04
 
-MAINTAINER Donatas Navidonskis <donatas@navidonskis.com>
+LABEL maintainer="noreply@realmdigital.co.za"
 
 # Let the container know that there is no tty
 ENV DEBIAN_FRONTEN noninteractive
@@ -9,7 +9,6 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	ln -sf /bin/true /sbin/initctl && \
 	mkdir /var/run/sshd && \
 	mkdir /run/php && \
-	
 	apt-get update && \
 	apt-get install -y --no-install-recommends apt-utils \ 
 		software-properties-common \
@@ -35,30 +34,30 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 		cron && \
 
 	# Install PHP
-	apt-get install -y php7.2-fpm \
-		php7.2-mysql \
-	    php7.2-curl \
-	    php7.2-gd \
-	    php7.2-intl \
+	apt-get install -y php7.3-fpm \
+		php7.3-mysql \
+	    php7.3-curl \
+	    php7.3-gd \
+	    php7.3-intl \
 	    php-memcache \
-	    php7.2-sqlite \
-	    php7.2-tidy \
-	    php7.2-xmlrpc \
-	    php7.2-pgsql \
-	    php7.2-ldap \
+	    php7.3-sqlite \
+	    php7.3-tidy \
+	    php7.3-xmlrpc \
+	    php7.3-pgsql \
+	    php7.3-ldap \
 	    freetds-common \
-	    php7.2-pgsql \
-	    php7.2-sqlite3 \
-	    php7.2-json \
-	    php7.2-xml \
-	    php7.2-mbstring \
-	    php7.2-soap \
-	    php7.2-zip \
-	    php7.2-cli \
-	    php7.2-sybase \
-	    php7.2-xdebug \
-	    php7.2-odbc \
-	    php7.2-imagick
+	    php7.3-pgsql \
+	    php7.3-sqlite3 \
+	    php7.3-json \
+	    php7.3-xml \
+	    php7.3-mbstring \
+	    php7.3-soap \
+	    php7.3-zip \
+	    php7.3-cli \
+	    php7.3-sybase \
+	    php7.3-xdebug \
+	    php7.3-odbc \
+	    php7.3-imagick
 
 # Cleanup
 RUN apt-get remove --purge -y software-properties-common \
@@ -76,19 +75,24 @@ RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf &
 	echo "daemon off;" >> /etc/nginx/nginx.conf && \
 
 	# PHP-FPM configuration
-	sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/7.2/fpm/php.ini && \
-	sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php/7.2/fpm/php.ini && \
-	sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php/7.2/fpm/php.ini && \
-	sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.2/fpm/php-fpm.conf && \
-	sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/pm.max_children = 5/pm.max_children = 9/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php7.2-fpm.pid" /etc/php/7.2/fpm/php-fpm.conf && \
-	sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php/7.2/fpm/pool.d/www.conf && \
-	sed -i -e "s/;clear_env = no/clear_env = no/g" /etc/php/7.2/fpm/pool.d/www.conf && \
+	sed -i -e "s/;cgi.fix_pathinfo=1/cgi.fix_pathinfo=0/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/upload_max_filesize\s*=\s*2M/upload_max_filesize = 100M/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/post_max_size\s*=\s*8M/post_max_size = 100M/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;opcache.memory_consumption\s*=\s*128/opcache.memory_consumption=256/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;opcache.max_accelerated_files\s*=\s*10000/opcache.max_accelerated_files=20000/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;opcache.opcache.validate_timestamps\s*=\s*1/opcache.opcache.validate_timestamps=0/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;opcache.opcache.realpath_cache_size\s*=\s*4096k/opcache.opcache.realpath_cache_size=4096K/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;opcache.opcache.realpath_cache_ttl\s*=\s*120/opcache.opcache.realpath_cache_ttl=600/g" /etc/php/7.3/fpm/php.ini && \
+	sed -i -e "s/;daemonize\s*=\s*yes/daemonize = no/g" /etc/php/7.3/fpm/php-fpm.conf && \
+	sed -i -e "s/;catch_workers_output\s*=\s*yes/catch_workers_output = yes/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/pm.max_children = 5/pm.max_children = 9/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/pm.start_servers = 2/pm.start_servers = 3/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/pm.min_spare_servers = 1/pm.min_spare_servers = 2/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/pm.max_spare_servers = 3/pm.max_spare_servers = 4/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/pm.max_requests = 500/pm.max_requests = 200/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "/pid\s*=\s*\/run/c\pid = /run/php7.3-fpm.pid" /etc/php/7.3/fpm/php-fpm.conf && \
+	sed -i -e "s/;listen.mode = 0660/listen.mode = 0750/g" /etc/php/7.3/fpm/pool.d/www.conf && \
+	sed -i -e "s/;clear_env = no/clear_env = no/g" /etc/php/7.3/fpm/pool.d/www.conf && \
 
 	# remove default nginx configurations
 	rm -Rf /etc/nginx/conf.d/* && \
@@ -97,7 +101,7 @@ RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf &
 	# create workdir directory
 	mkdir -p /var/www
 
-COPY ./config/php/xdebug.ini /etc/php/7.2/mods-available/xdebug.ini
+COPY ./config/php/xdebug.ini /etc/php/7.3/mods-available/xdebug.ini
 COPY ./config/nginx/nginx.conf /etc/nginx/sites-available/default.conf
 # Supervisor Config
 COPY ./config/supervisor/supervisord.conf /etc/supervisord.conf

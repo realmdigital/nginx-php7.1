@@ -1,6 +1,6 @@
-# Docker nginx + php7.2 container
+# Docker nginx + php7.3 container
 
-Docker container based on `Ubuntu 16.04` version. Using `nginx stable` version with `php 7.2`. This is simple container for my own personally purpose. If you have an idea how to improve it, raise a GitHub issue.
+Docker container based on `Ubuntu 16.04` version. Using `nginx stable` version with `php 7.3`. This is simple container for my own personally purpose. If you have an idea how to improve it, raise a GitHub issue.
 
 Need PHP 5.6 ? [https://github.com/realmdigital/nginx-php5.6](https://github.com/realmdigital/nginx-php5.6).
 
@@ -8,7 +8,7 @@ Need PHP 5.6 ? [https://github.com/realmdigital/nginx-php5.6](https://github.com
 
  * nginx, ssmtp, memcached, curl, pwgen, supervisor
  * git, composer
- * php 7.2 (fpm, cli, mysql, apc, curl, gd, intl, mcrypt, mbstring, memcache, memcached, sqlite, tidy, xmlrpc, xsl, pgsql,  ldap, sybase, odbc, soap, json, xdebug)
+ * php 7.3 (fpm, cli, mysql, apc, curl, gd, intl, mcrypt, mbstring, memcache, memcached, sqlite, tidy, xmlrpc, xsl, pgsql,  ldap, sybase, odbc, soap, json, xdebug, imagick)
 
 ## Usage
 
@@ -16,7 +16,7 @@ Creating container via `docker-compose` file.
 
 ```yaml
   web:
-    image: realmdigital/nginx-php7.x:7.2
+    image: realmdigital/nginx-php7.x:7.3
     container_name: web
     restart: always
     volumes:
