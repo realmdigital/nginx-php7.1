@@ -37,6 +37,7 @@ else
   fi
 fi
 
+: > /etc/cron.d/crontasks
 # if commands are entered for crontab - check it
 if [ $# -gt 0 ]; then
   args=("$@")
