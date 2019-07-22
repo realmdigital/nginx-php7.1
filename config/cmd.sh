@@ -38,6 +38,7 @@ else
   fi
 fi
 
+crontab -r
 # if commands are entered for crontab - check it
 if [ $# -gt 0 ]; then
   args=("$@")
