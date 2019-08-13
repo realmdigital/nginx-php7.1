@@ -1,5 +1,4 @@
 #!/bin/bash
-
 set -euo pipefail
 
 NGINX_ROOT=${NGINX_ROOT:=/var/www}

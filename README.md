@@ -8,7 +8,7 @@ Need PHP 5.6 ? [https://github.com/realmdigital/nginx-php5.6](https://github.com
 
  * nginx, ssmtp, memcached, curl, pwgen, supervisor
  * git, composer
- * php 7.2 (fpm, cli, mysql, apc, curl, gd, intl, mcrypt, mbstring, memcache, memcached, sqlite, tidy, xmlrpc, xsl, pgsql,  ldap, sybase, odbc, soap, json, xdebug)
+ * php 7.2 (fpm, cli, mysql, apc, curl, gd, intl, mcrypt, mbstring, memcache, memcached, sqlite, tidy, xmlrpc, xsl, pgsql,  ldap, sybase, odbc, soap, json, xdebug, imagick)
 
 ## Usage
 
