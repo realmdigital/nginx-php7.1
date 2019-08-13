@@ -1,14 +1,12 @@
-web:
+version: "3.6"
+
+services:
+  web:
     image: realmdigital/nginx-php7.x:7.3
     container_name: realmdigital-nginx-php7.3-test-instance
-    hostname: realmdigital-nginx-php7.3-test-instance
     restart: always
-    net: host
     environment:
       ENABLE_XDEBUG: 1
-      XDEBUG_CONFIG: "remote_host=123.123.34.34"
     ports:
       - '80:80'
       - '443:443'
-    command:
-      - '* * * * * cd /var/www/html && php ./artisan schedule:run >> /dev/null 2>&1'
