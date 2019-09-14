@@ -53,7 +53,8 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	    php7.3-sybase \
 	    php7.3-xdebug \
 	    php7.3-odbc \
-	    php7.3-imagick
+	    php7.3-imagick \
+	    php7.3-bcmath
 
 # Cleanup
 RUN apt-get remove --purge -y software-properties-common \
