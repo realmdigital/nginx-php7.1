@@ -1,6 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
+# update /etc/hosts with host.docker.internal
+echo "$(/sbin/ip route|awk '/default/ { print $3 }') host.docker.internal" >> /etc/hosts && echo "/etc/hosts updated with host.docker.internal"
+
 NGINX_ROOT=${NGINX_ROOT:=/var/www}
 FASTCGI_PARAM_HTTPS=${FASTCGI_PARAM_HTTPS:=on}
 
