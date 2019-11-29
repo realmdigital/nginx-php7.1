@@ -8,8 +8,8 @@ NGINX_ROOT=${NGINX_ROOT:=/var/www}
 FASTCGI_PARAM_HTTPS=${FASTCGI_PARAM_HTTPS:=on}
 
 # Display PHP error's or not
-sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/g" /etc/php/7.3/fpm/php.ini
-sed -i -e "s/display_errors =.*/display_errors = Off/g" /etc/php/7.3/fpm/php.ini
+sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/g" /etc/php/7.4/fpm/php.ini
+sed -i -e "s/display_errors =.*/display_errors = Off/g" /etc/php/7.4/fpm/php.ini
 
 # Tweak nginx to match the workers to cpu's
 procs=$(cat /proc/cpuinfo |grep processor | wc -l)
@@ -24,8 +24,8 @@ set +e
 chown -Rf www-data.www-data $NGINX_ROOT
 set -e
 
-XdebugEnabledFile='/etc/php/7.3/fpm/conf.d/20-xdebug.ini'
-XdebugModFile='/etc/php/7.3/mods-available/xdebug.ini'
+XdebugEnabledFile='/etc/php/7.4/fpm/conf.d/20-xdebug.ini'
+XdebugModFile='/etc/php/7.4/mods-available/xdebug.ini'
 if [[ "$ENABLE_XDEBUG" == "1" ]] ; then
   if [ -f $XdebugEnabledFile ]; then
     echo "Xdebug enabled"

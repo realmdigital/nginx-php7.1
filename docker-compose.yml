@@ -2,8 +2,8 @@ version: "3.6"
 
 services:
   web:
-    image: realmdigital/nginx-php7.x:7.3
-    container_name: realmdigital-nginx-php7.3-test-instance
+    image: realmdigital/nginx-php7.x:7.4
+    container_name: realmdigital-nginx-php7.4-test-instance
     restart: always
     environment:
       ENABLE_XDEBUG: 1
