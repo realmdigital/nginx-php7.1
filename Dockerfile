@@ -112,7 +112,10 @@ RUN rm -f /etc/nginx/sites-enabled/default && \
 	chmod 755 /cmd.sh && \
 	chown -Rf www-data.www-data /var/www && \
 	touch /var/log/cron.log && \
-	touch /etc/cron.d/crontasks
+	touch /etc/cron.d/crontasks && \
+	mkdir -p /tmp/laravel/storage/app && \
+	mkdir -p /tmp/laravel/storage/framework/cache/data && mkdir -p /tmp/laravel/storage/framework/views && \
+	mkdir -p /tmp/laravel/storage/logs
 
 # Expose Ports
 EXPOSE 80
