@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+FROM ubuntu:20.04
 
 LABEL maintainer="noreply@realmdigital.co.za"
 
@@ -12,10 +12,9 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends apt-utils \ 
 		software-properties-common \
-		python-software-properties \
 		language-pack-en-base && \
 	LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && \
-	apt-get update && apt-get upgrade -y && \
+	apt-get update && \
 	apt-get install -y python-setuptools \ 
 		curl \
 		git \
@@ -58,8 +57,7 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	    php7.4-bcmath
 
 # Cleanup
-RUN apt-get remove --purge -y software-properties-common \
-	python-software-properties && \
+RUN apt-get remove --purge -y software-properties-common && \
 	apt-get autoremove -y && \
 	apt-get clean && \
 	apt-get autoclean && \
