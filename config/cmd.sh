@@ -6,6 +6,7 @@ echo "$(/sbin/ip route|awk '/default/ { print $3 }') host.docker.internal" >> /e
 
 NGINX_ROOT=${NGINX_ROOT:=/var/www}
 FASTCGI_PARAM_HTTPS=${FASTCGI_PARAM_HTTPS:=on}
+ENABLE_XDEBUG=${ENABLE_XDEBUG:=0}
 
 # Display PHP error's or not
 sed -i -e "s/error_reporting =.*=/error_reporting = E_ALL & ~E_DEPRECATED & ~E_STRICT/g" /etc/php/7.4/fpm/php.ini

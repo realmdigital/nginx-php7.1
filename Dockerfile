@@ -11,50 +11,50 @@ RUN dpkg-divert --local --rename --add /sbin/initctl && \
 	mkdir /run/php && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends apt-utils \ 
-		software-properties-common \
-		language-pack-en-base && \
+	software-properties-common \
+	language-pack-en-base && \
 	LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && \
 	apt-get update && \
 	apt-get install -y python-setuptools \ 
-		curl \
-		git \
-		nano \
-		sudo \
-		unzip \
-		openssh-server \
-		openssl \
-		supervisor \
-		nginx \
-		memcached \
-		ssmtp \
-		iputils-ping \
-		cron && \
+	curl \
+	git \
+	nano \
+	sudo \
+	unzip \
+	openssh-server \
+	openssl \
+	supervisor \
+	nginx \
+	memcached \
+	ssmtp \
+	iputils-ping \
+	cron && \
 	# Install PHP
 	apt-get install -y php7.4-fpm \
-		php7.4-mysql \
-	    php7.4-curl \
-	    php7.4-gd \
-	    php7.4-intl \
-	    php-memcache \
-	    php7.4-sqlite \
-	    php7.4-tidy \
-	    php7.4-xmlrpc \
-	    php7.4-pgsql \
-	    php7.4-ldap \
-	    freetds-common \
-	    php7.4-pgsql \
-	    php7.4-sqlite3 \
-	    php7.4-json \
-	    php7.4-xml \
-	    php7.4-mbstring \
-	    php7.4-soap \
-	    php7.4-zip \
-	    php7.4-cli \
-	    php7.4-sybase \
-	    php7.4-xdebug \
-	    php7.4-odbc \
-	    php7.4-imagick \
-	    php7.4-bcmath
+	php7.4-mysql \
+	php7.4-curl \
+	php7.4-gd \
+	php7.4-intl \
+	php-memcache \
+	php7.4-sqlite \
+	php7.4-tidy \
+	php7.4-xmlrpc \
+	php7.4-pgsql \
+	php7.4-ldap \
+	freetds-common \
+	php7.4-pgsql \
+	php7.4-sqlite3 \
+	php7.4-json \
+	php7.4-xml \
+	php7.4-mbstring \
+	php7.4-soap \
+	php7.4-zip \
+	php7.4-cli \
+	php7.4-sybase \
+	php7.4-xdebug \
+	php7.4-odbc \
+	php7.4-imagick \
+	php7.4-bcmath
 
 # Cleanup
 RUN apt-get remove --purge -y software-properties-common && \
@@ -62,8 +62,7 @@ RUN apt-get remove --purge -y software-properties-common && \
 	apt-get clean && \
 	apt-get autoclean && \
 	# install composer
-	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer && \
-	composer global require hirak/prestissimo
+	curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
 
 # Nginx configuration
 RUN sed -i -e"s/worker_processes  1/worker_processes 5/" /etc/nginx/nginx.conf && \
